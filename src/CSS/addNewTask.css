@@ -1,0 +1,33 @@
+.newTask {
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-addNewTask);
+  padding: var(--spacing-small);
+  border: 1px solid var(--color-grey);
+  border-radius: 16px;
+}
+.input_newTask {
+  color: var(--color-grey);
+  width: 50%;
+  font-size: 12px;
+}
+.input_newTask::placeholder {
+  color: var(--color-grey);
+}
+.btn_newTask {
+  background-color: var(--bg-blue);
+  color: var(--color-white);
+  font-weight: bold;
+  width: fit-content;
+}
+/* media query */
+@media screen and (min-width: 425px) {
+  .input_newTask {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .input_newTask {
+    width: 80%;
+  }
+}

@@ -1,6 +1,15 @@
 /* utily */
 .container {
+  margin-top: 40px;
+  padding: var(--spacing-small);
+}
+.flex {
+  display: flex;
+}
+/* media query */
+@media screen and (min-width: 768px) {
+  .container {
     width: 50%;
     margin: 40px auto 0 auto;
-    padding: var(--spacing-small);
+  }
 }
