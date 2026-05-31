@@ -1,0 +1,6 @@
+/* utily */
+.container {
+    width: 50%;
+    margin: 40px auto 0 auto;
+    padding: var(--spacing-small);
+}

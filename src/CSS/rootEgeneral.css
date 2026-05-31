@@ -1,5 +1,11 @@
 /* root */
 :root {
-  
+  --spacing-small: 10px;
 }
 /* generali */
+h1 {
+  font-weight: 600;
+}
+h3 {
+  font-weight: 100;
+}
