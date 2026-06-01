@@ -2,26 +2,15 @@ import React from "react";
 import "../CSS/task.css";
 
 export const Task = ({ title, OnChecked, OnEdit, onDelete }) => {
+  //
+  if (OnChecked) {
+  }
   return (
     <>
       <div className="task flex">
         <div className="content flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-square-icon lucide-square
-            unchecked"
-            onClick={OnChecked}
-          >
-            <rect width="18" height="18" x="3" y="3" rx="2" />
-          </svg>
+          <input type="checkbox" onClick={OnChecked}
+          className="check" />
           <h3 className="titleTask">{title}</h3>
         </div>
         <div className="icons flex">
