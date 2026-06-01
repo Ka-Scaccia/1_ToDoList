@@ -9,6 +9,10 @@ import { useState } from "react";
 function App() {
   // useState
   const [countActivity, setCountActivity] = useState(0);
+  const [activity, setActivity] = useState("");
+  const [isClicked, setIsClicked] = useState(false);
+  const yesClicked = () => setIsClicked(true);
+  const noClicked = () => setIsClicked(false);
   return (
     <div className="App container">
       <div className="contenitorePrincipale flex">
@@ -16,7 +20,8 @@ function App() {
           <Header count={countActivity} setCount={setCountActivity} />
         </div>
         <div className="box2">
-          <AddNewTask />
+          <AddNewTask content={activity} setContent={setActivity}
+          clickedBtn={yesClicked} />
         </div>
       </div>
     </div>
