@@ -8,9 +8,12 @@ import { Header } from "./componenti/Header.js";
 import { useState } from "react";
 
 function App() {
-  // useState
+  // ARRAY
+  const [tasks, setTasks] = useState([]);
+  // USESTATE
   // contatore task
   const [countActivity, setCountActivity] = useState(0);
+  // contenuto nuova task
   const [activity, setActivity] = useState("");
   // controllo click btn "Aggiungi"
   const [isClicked, setIsClicked] = useState(false);
@@ -28,26 +31,68 @@ function App() {
   const [isClickedDelete, setIsClickedDelete] = useState(false);
   const yesDelete = () => setIsClickedDelete(true);
   const noDelete = () => setIsClickedDelete(false);
-  return (
-    <div className="App container">
-      <div className="contenitorePrincipale flex">
-        <div className="box1">
-          <Header count={countActivity} setCount={setCountActivity} />
+  // FUNCTION
+  // aggiungi un nuovo task: se il contenuto dell'input è popolato
+  // aggiungi un nuovo array e resetta contenuto input e controllo click BTN
+  const addTask = () => {
+    if (!activity.trim()) {
+      alert("Scrivere qualcosa!");
+      return;
+    }
+    const newTask = { id: Date.now(), title: activity };
+    setTasks((prev) => [...prev, newTask]);
+    setActivity("");
+    setIsClicked(false);
+  };
+
+  // se l'utente ha cliccato il bottone "Aggiungi"
+  if (setIsClicked) {
+    return (
+      <>
+        <div className="App container">
+          <div className="contenitorePrincipale flex">
+            <div className="box1">
+              <Header count={countActivity} setCount={setCountActivity} />
+            </div>
+            <div className="box2">
+              <AddNewTask
+                content={activity}
+                setContent={setActivity}
+                clickedBtn={addTask}
+              />
+            </div>
+            {/* ritorno la lista dei tasks */}
+            {tasks.map((task) => (
+              <Task
+                key={task.id}
+                title={task.title}
+                OnChecked={yesChecked}
+                OnEdit={yesEdit}
+                onDelete={yesDelete}
+              />
+            ))}
+          </div>
         </div>
-        <div className="box2">
-          <AddNewTask
-            content={activity}
-            setContent={setActivity}
-            clickedBtn={yesClicked}
-          />
-        </div>
-        <div className="box3">
-          <Task OnChecked={yesChecked} OnEdit={yesEdit}
-          onDelete={yesDelete} />
+      </>
+    );
+  } else {
+    return (
+      <div className="App container">
+        <div className="contenitorePrincipale flex">
+          <div className="box1">
+            <Header count={countActivity} setCount={setCountActivity} />
+          </div>
+          <div className="box2">
+            <AddNewTask
+              content={activity}
+              setContent={setActivity}
+              clickedBtn={yesClicked}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

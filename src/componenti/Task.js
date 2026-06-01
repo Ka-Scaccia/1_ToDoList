@@ -1,7 +1,7 @@
 import React from "react";
 import "../CSS/task.css";
 
-export const Task = ({ OnChecked, OnEdit, onDelete }) => {
+export const Task = ({ title, OnChecked, OnEdit, onDelete }) => {
   return (
     <>
       <div className="task flex">
@@ -13,16 +13,16 @@ export const Task = ({ OnChecked, OnEdit, onDelete }) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-square-icon lucide-square
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-square-icon lucide-square
             unchecked"
             onClick={OnChecked}
           >
             <rect width="18" height="18" x="3" y="3" rx="2" />
           </svg>
-          <h3 className="titleTask">Presentazione Progetto</h3>
+          <h3 className="titleTask">{title}</h3>
         </div>
         <div className="icons flex">
           <svg
@@ -32,10 +32,10 @@ export const Task = ({ OnChecked, OnEdit, onDelete }) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-pencil-icon lucide-pencil
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-pencil-icon lucide-pencil
             edit"
             onClick={OnEdit}
           >
@@ -49,10 +49,10 @@ export const Task = ({ OnChecked, OnEdit, onDelete }) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-trash-icon lucide-trash
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-trash-icon lucide-trash
             remove"
             onClick={onDelete}
           >
