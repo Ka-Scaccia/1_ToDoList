@@ -5,7 +5,7 @@ import "./App.css";
 import { Task } from "./componenti/Task.js";
 import { AddNewTask } from "./componenti/AddNewTask.js";
 import { Header } from "./componenti/Header.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   // ARRAY
@@ -38,12 +38,20 @@ function App() {
     if (!activity.trim()) {
       alert("Scrivere qualcosa!");
       return;
+    } else {
+      const newTask = { id: Date.now(), title: activity };
+      setTasks((prev) => [...prev, newTask]);
+      console.log(setCountActivity());
+      setActivity("");
+      setIsClicked(false);
     }
-    const newTask = { id: Date.now(), title: activity };
-    setTasks((prev) => [...prev, newTask]);
-    setActivity("");
-    setIsClicked(false);
   };
+  // USE-EFFECT
+  // ogni volta che l'array task si aggiorna, aggiorna
+  // il count con la sua relativa lunghezza
+  useEffect(() => {
+    setCountActivity(tasks.length);
+  }, [tasks]);
 
   // se l'utente ha cliccato il bottone "Aggiungi"
   if (setIsClicked) {
