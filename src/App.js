@@ -2,6 +2,7 @@ import "./App.css";
 import "./CSS/utily.css";
 import "./CSS/utily.css";
 import "./App.css";
+import { Task } from "./componenti/Task.js";
 import { AddNewTask } from "./componenti/AddNewTask.js";
 import { Header } from "./componenti/Header.js";
 import { useState } from "react";
@@ -22,6 +23,9 @@ function App() {
         <div className="box2">
           <AddNewTask content={activity} setContent={setActivity}
           clickedBtn={yesClicked} />
+        </div>
+        <div className="box3">
+          <Task />
         </div>
       </div>
     </div>
