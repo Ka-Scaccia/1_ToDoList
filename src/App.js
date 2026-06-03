@@ -14,12 +14,9 @@ function App() {
   const countActivity = tasks.filter((task) => !task.checked).length;
   // contenuto nuova task
   const [activity, setActivity] = useState("");
-  // controllo click btn "Aggiungi"
-  const [isClicked, setIsClicked] = useState(false);
-  const yesClicked = () => setIsClicked(true);
   // FUNCTION
   // aggiungi un nuovo task: se il contenuto dell'input è popolato
-  // aggiungi un nuovo array e reset contenuto/click
+  // aggiungi un nuovo array e reset contenuto
   const addTask = () => {
     if (!activity.trim()) {
       alert("Scrivere qualcosa!");
@@ -28,7 +25,6 @@ function App() {
       const newTask = { id: Date.now(), title: activity, checked: false };
       setTasks((prev) => [...prev, newTask]);
       setActivity("");
-      setIsClicked(false);
     }
   };
   // reset input nuovi task
@@ -44,60 +40,38 @@ function App() {
     setTasks((prev) => prev.filter((task) => task.id !== id))
   }
 
-  // se l'utente ha cliccato il bottone "Aggiungi"
-  if (setIsClicked) {
-    return (
-      <>
-        <div className="App container">
-          <div className="contenitorePrincipale flex">
-            <div className="box1">
-              <Header count={countActivity} />
-            </div>
-            <div className="box2">
-              <AddNewTask
-                content={activity}
-                setContent={setActivity}
-                clickedBtn={addTask}
+  return (
+    <div className="App container">
+      <div className="contenitorePrincipale flex">
+        <div className="box1">
+          <Header count={countActivity} />
+        </div>
+        <div className="box2">
+          <AddNewTask
+            content={activity}
+            setContent={setActivity}
+            clickedBtn={addTask}
+          />
+        </div>
+        {/* ritorno la lista dei tasks */}
+        <div className="listTask flex">
+          {tasks.map((task) => (
+            <div
+              key={task.id}
+              className={`listTask_box ${task.checked ? "bottom" : ""}`}
+            >
+              <Task
+                title={task.title}
+                checked={task.checked}
+                setChecked={() => toggleTaskChecked(task.id)}
+                onDelete={() => toggleTaskDelete(task.id)}
               />
             </div>
-            {/* ritorno la lista dei tasks */}
-            <div className="listTask flex">
-              {tasks.map((task) => (
-                <div
-                  key={task.id}
-                  className={`listTask_box ${task.checked ? "bottom" : ""}`}
-                >
-                  <Task
-                    title={task.title}
-                    checked={task.checked}
-                    setChecked={() => toggleTaskChecked(task.id)}
-                    onDelete={() => toggleTaskDelete(task.id)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <div className="App container">
-        <div className="contenitorePrincipale flex">
-          <div className="box1">
-            <Header count={countActivity} />
-          </div>
-          <div className="box2">
-            <AddNewTask
-              content={activity}
-              setContent={setActivity}
-              clickedBtn={yesClicked}
-            />
-          </div>
+          ))}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
