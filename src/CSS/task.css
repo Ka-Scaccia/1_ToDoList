@@ -6,6 +6,25 @@
   border: 1px solid var(--color-grey);
   border-radius: 16px;
 }
+.task.checkInput {
+  background-color: var(--bg-inputCheck);
+  opacity: 0.7;
+}
+.titleTask.checkInput {
+  position: relative;
+  display: inline-block; 
+  text-decoration: none; 
+}
+.titleTask.checkInput::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background-color: currentColor;
+  transform: translateY(-50%);
+}
 .content,
 .icons {
   gap: var(--spacing-small);

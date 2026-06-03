@@ -1,17 +1,22 @@
 import React from "react";
 import "../CSS/task.css";
 
-export const Task = ({ title, OnChecked, OnEdit, onDelete }) => {
-  //
-  if (OnChecked) {
-  }
+export const Task = ({ title, checked, setChecked, OnEdit, onDelete }) => {
+  // FUNZIONI
+  // gestione input con check
+  const handleCheck = () => setChecked(!checked);
+  const classInput = checked ? "checkInput" : "";
   return (
     <>
-      <div className="task flex">
+      <div className={`task flex ${classInput}`}>
         <div className="content flex">
-          <input type="checkbox" onClick={OnChecked}
-          className="check" />
-          <h3 className="titleTask">{title}</h3>
+          <input
+            type="checkbox"
+            className="check"
+            checked={checked}
+            onChange={handleCheck}
+          />
+          <h3 className={`titleTask ${classInput}`}>{title}</h3>
         </div>
         <div className="icons flex">
           <svg

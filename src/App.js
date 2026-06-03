@@ -12,7 +12,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   // USESTATE
   // contatore task
-  const [countActivity, setCountActivity] = useState(0);
+  const countActivity = tasks.length;
   // contenuto nuova task
   const [activity, setActivity] = useState("");
   // controllo click btn "Aggiungi"
@@ -39,19 +39,20 @@ function App() {
       alert("Scrivere qualcosa!");
       return;
     } else {
-      const newTask = { id: Date.now(), title: activity };
+      const newTask = { id: Date.now(), title: activity, checked: false };
       setTasks((prev) => [...prev, newTask]);
-      console.log(setCountActivity());
       setActivity("");
       setIsClicked(false);
     }
   };
-  // USE-EFFECT
-  // ogni volta che l'array task si aggiorna, aggiorna
-  // il count con la sua relativa lunghezza
-  useEffect(() => {
-    setCountActivity(tasks.length);
-  }, [tasks]);
+  // reset input nuovi task
+  const toggleTaskChecked = (id) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, checked: !task.checked } : task,
+      ),
+    );
+  };
 
   // se l'utente ha cliccato il bottone "Aggiungi"
   if (setIsClicked) {
@@ -60,7 +61,7 @@ function App() {
         <div className="App container">
           <div className="contenitorePrincipale flex">
             <div className="box1">
-              <Header count={countActivity} setCount={setCountActivity} />
+              <Header count={countActivity} />
             </div>
             <div className="box2">
               <AddNewTask
@@ -70,15 +71,22 @@ function App() {
               />
             </div>
             {/* ritorno la lista dei tasks */}
-            {tasks.map((task) => (
-              <Task
-                key={task.id}
-                title={task.title}
-                OnChecked={yesChecked}
-                OnEdit={yesEdit}
-                onDelete={yesDelete}
-              />
-            ))}
+            <div className="listTask flex">
+              {tasks.map((task) => (
+                <div
+                  key={task.id}
+                  className={`listTask_box ${task.checked ? "bottom" : ""}`}
+                >
+                  <Task
+                    title={task.title}
+                    checked={task.checked}
+                    setChecked={() => toggleTaskChecked(task.id)}
+                    OnEdit={yesEdit}
+                    onDelete={yesDelete}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </>
@@ -88,7 +96,7 @@ function App() {
       <div className="App container">
         <div className="contenitorePrincipale flex">
           <div className="box1">
-            <Header count={countActivity} setCount={setCountActivity} />
+            <Header count={countActivity} />
           </div>
           <div className="box2">
             <AddNewTask

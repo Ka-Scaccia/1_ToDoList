@@ -13,4 +13,14 @@ body {
   flex-direction: column;
   gap: var(--spacing-highest);
 }
+.listTask {
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+.listTask_box {
+  order: 0;
+}
+.listTask_box.bottom {
+  order: 1;
+}
 
