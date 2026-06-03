@@ -22,7 +22,7 @@ function App() {
   const noClicked = () => setIsClicked(false);
   // FUNCTION
   // aggiungi un nuovo task: se il contenuto dell'input è popolato
-  // aggiungi un nuovo array e resetta contenuto input e controllo click BTN
+  // aggiungi un nuovo array e reset contenuto/click
   const addTask = () => {
     if (!activity.trim()) {
       alert("Scrivere qualcosa!");
