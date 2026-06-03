@@ -12,7 +12,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   // USESTATE
   // contatore task
-  const countActivity = tasks.length;
+  const countActivity = tasks.filter((task) => !task.checked).length;
   // contenuto nuova task
   const [activity, setActivity] = useState("");
   // controllo click btn "Aggiungi"
