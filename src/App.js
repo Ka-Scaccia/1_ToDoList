@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   // ARRAY
+  // lista task
   const [tasks, setTasks] = useState([]);
   // USESTATE
   // contatore task
@@ -19,18 +20,6 @@ function App() {
   const [isClicked, setIsClicked] = useState(false);
   const yesClicked = () => setIsClicked(true);
   const noClicked = () => setIsClicked(false);
-  // controllo click task fatto
-  const [isChecked, setIsChecked] = useState(false);
-  const yesChecked = () => setIsChecked(true);
-  const noChecked = () => setIsChecked(false);
-  // controllo click su icona edit
-  const [isClickedEdit, setIsClickedEdit] = useState(false);
-  const yesEdit = () => setIsClickedEdit(true);
-  const noEdit = () => setIsClickedEdit(false);
-  // controllo click su icona delete
-  const [isClickedDelete, setIsClickedDelete] = useState(false);
-  const yesDelete = () => setIsClickedDelete(true);
-  const noDelete = () => setIsClickedDelete(false);
   // FUNCTION
   // aggiungi un nuovo task: se il contenuto dell'input è popolato
   // aggiungi un nuovo array e resetta contenuto input e controllo click BTN
@@ -53,6 +42,10 @@ function App() {
       ),
     );
   };
+  // eliminazione task
+  const toggleTaskDelete = (id) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id))
+  }
 
   // se l'utente ha cliccato il bottone "Aggiungi"
   if (setIsClicked) {
@@ -81,8 +74,7 @@ function App() {
                     title={task.title}
                     checked={task.checked}
                     setChecked={() => toggleTaskChecked(task.id)}
-                    OnEdit={yesEdit}
-                    onDelete={yesDelete}
+                    onDelete={() => toggleTaskDelete(task.id)}
                   />
                 </div>
               ))}
