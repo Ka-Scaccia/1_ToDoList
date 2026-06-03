@@ -1,4 +1,3 @@
-import React from "react";
 import "../CSS/addNewTask.css";
 
 export const AddNewTask = ({ content, setContent, clickedBtn }) => {

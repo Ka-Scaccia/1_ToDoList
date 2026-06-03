@@ -1,7 +1,6 @@
-import React from 'react'
 import "../CSS/rootEgeneral.css";
 
-export const Header = ({ count, setCount }) => {
+export const Header = ({ count }) => {
   return (
     <>
       <h1>Le mie attività</h1>

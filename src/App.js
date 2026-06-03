@@ -1,11 +1,9 @@
 import "./App.css";
 import "./CSS/utily.css";
-import "./CSS/utily.css";
-import "./App.css";
 import { Task } from "./componenti/Task.js";
 import { AddNewTask } from "./componenti/AddNewTask.js";
 import { Header } from "./componenti/Header.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   // ARRAY
@@ -19,7 +17,6 @@ function App() {
   // controllo click btn "Aggiungi"
   const [isClicked, setIsClicked] = useState(false);
   const yesClicked = () => setIsClicked(true);
-  const noClicked = () => setIsClicked(false);
   // FUNCTION
   // aggiungi un nuovo task: se il contenuto dell'input è popolato
   // aggiungi un nuovo array e reset contenuto/click

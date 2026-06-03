@@ -1,7 +1,6 @@
-import React from "react";
 import "../CSS/task.css";
 
-export const Task = ({ title, checked, setChecked, OnEdit, onDelete }) => {
+export const Task = ({ title, checked, setChecked, onDelete }) => {
   // FUNZIONI
   // gestione input con check
   const handleCheck = () => setChecked(!checked);
